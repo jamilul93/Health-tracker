@@ -1,5 +1,5 @@
 # Health Tracker
-Health Tracker is an app ....
+Health Tracker is an app which 
 
 ## Objectives
 * To record
@@ -7,5 +7,5 @@ Health Tracker is an app ....
 ## UML Design
 ![UML of Heart Tracker](https://user-images.githubusercontent.com/104196471/175789245-2a5fd874-e7e1-4328-bbaf-c4e72fb003e7.png)
 
-## UML Design
-<img src="https://user-images.githubusercontent.com/104196471/175789245-2a5fd874-e7e1-4328-bbaf-c4e72fb003e7.png" width="180" height="300">
+## UI flow 
+![flow](https://user-images.githubusercontent.com/104196471/175790274-2318028d-527c-404b-ba37-e2de2dd638cb.png)
