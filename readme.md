@@ -9,3 +9,6 @@ Health Tracker is an app which
 
 ## UI flow 
 ![flow](https://user-images.githubusercontent.com/104196471/175790274-2318028d-527c-404b-ba37-e2de2dd638cb.png)
+
+## mockup design
+![Uploading 4119090.png…]()
