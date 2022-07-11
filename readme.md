@@ -1,8 +1,10 @@
 # Health Tracker
-Health Tracker is an app which 
+Health Tracker is an app which is used to take data from the user and told them about their heath condition . It takes heart rate and bp and after calculation gives indication about their health heart rate condition 
 
 ## Objectives
-* To record
+* To record heart rate and show the users heart condition 
+* 
+
 
 ## UML Design
 ![UML of Heart Tracker](https://user-images.githubusercontent.com/104196471/175789245-2a5fd874-e7e1-4328-bbaf-c4e72fb003e7.png)
