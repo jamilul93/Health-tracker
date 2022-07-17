@@ -3,6 +3,7 @@ package com.example.heathmonitor;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     ModelClass modelclass;
     Gson gson;
+
+
 
     Button button;
     String s1,s2,s3,s4;
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         mcl.add(new ModelClass("22-10-22","120","80","66"));
         mcl.add(new ModelClass("22-10-22","120","80","66"));*/
         recyclerView1=findViewById(R.id.recyclarView);
-        adapter =new TaskAdapter(mcl);
+        adapter =new TaskAdapter(MainActivity.this, mcl);
         recyclerView1.setAdapter(adapter);
     }
 

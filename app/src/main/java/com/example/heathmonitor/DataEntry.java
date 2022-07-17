@@ -23,8 +23,8 @@ import java.util.ArrayList;
 
 public class DataEntry extends AppCompatActivity {
    Button saveButton;
-   String date,systolic,diastolic,bloodPressure ;
-   EditText edtx1,edtx2,edtx3,edtx4;
+   String date,time,systolic,diastolic,bloodPressure,comment ;
+   EditText edtx1,edtx2,edtx3,edtx4,edtx5,edtx6;
    ArrayList<ModelClass> jamiArray;
    SharedPreferences sharedPreferences;
    SharedPreferences.Editor editor;
@@ -40,6 +40,9 @@ public class DataEntry extends AppCompatActivity {
         edtx2=findViewById(R.id.systolicValue);
         edtx3= findViewById(R.id.diastolicValue);
         edtx4 =findViewById(R.id.heartRateValue);
+        edtx5=findViewById(R.id.dateValue);
+        edtx6=findViewById(R.id.commentValue);
+
         retrieveData();
 
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -89,10 +92,12 @@ public class DataEntry extends AppCompatActivity {
                 if ((Integer.parseInt(edtx4.getText().toString()) >= 0) && (Integer.parseInt(edtx4.getText().toString())<=150)) {
                     Toast.makeText(DataEntry.this,"HI",Toast.LENGTH_LONG).show();
                     date= edtx1.getText().toString();
+                    time=edtx5.getText().toString();
                     systolic=edtx2.getText().toString();
                     diastolic=edtx3.getText().toString();
                     bloodPressure =edtx4.getText().toString();
-                    modelclass = new ModelClass(date,systolic,diastolic,bloodPressure);
+                    comment= edtx6.getText().toString();
+                    modelclass = new ModelClass(date,time,systolic,diastolic,bloodPressure,comment);
                     jamiArray.add(modelclass);
                     PreferenceManager.getDefaultSharedPreferences(DataEntry.this).edit().clear().commit();
                     saveData();
