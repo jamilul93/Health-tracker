@@ -1,4 +1,4 @@
-package com.example.health_tracker;
+package com.example.heathmonitor;
 
 import org.junit.Test;
 
