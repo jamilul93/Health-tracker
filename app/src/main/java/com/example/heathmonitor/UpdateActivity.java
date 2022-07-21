@@ -63,7 +63,7 @@ public class UpdateActivity extends AppCompatActivity {
         {
             sharedPreferences = getSharedPreferences("shared",MODE_PRIVATE);
             gson = new Gson();
-            String jsonString = sharedPreferences.getString("record",null);
+            String jsonString = sharedPreferences.getString("jami",null);
             Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
             recordsArrayList = gson.fromJson(jsonString,type);
             if(recordsArrayList ==null)
@@ -77,7 +77,7 @@ public class UpdateActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
         gson = new Gson();
         String jsonString = gson.toJson(recordsArrayList);
-        editor.putString("record",jsonString);
+        editor.putString("jami",jsonString);
         editor.apply();
     }
 
