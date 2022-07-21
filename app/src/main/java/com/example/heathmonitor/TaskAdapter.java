@@ -102,20 +102,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
             }
         });
         modelClass = mclass.get(position);
-        if (Integer.parseInt(modelClass.getDiastolic())<80 )holder.tx2.setTextColor(Color.parseColor("#FF018786"));
+        if (Integer.parseInt(modelClass.getDiastolic())<80 )holder.tx3.setTextColor(Color.parseColor("#FF018786"));
        else if(Integer.parseInt(modelClass.getDiastolic())<89)
             holder.tx3.setTextColor(Color.parseColor("#3C96DD"));
         else holder.tx3.setTextColor(Color.parseColor("#C3473E"));
 
 
-        //if (record.getSystolic()<120) holder.systolicTextView.setTextColor(Color.parseColor("#FF018786"));
-        //else if(record.getSystolic()<=139) holder.systolicTextView.setTextColor(Color.parseColor("#3C96DD"));
-        //else holder.systolicTextView.setTextColor(Color.parseColor("#C3473E"));
+        if (Integer.parseInt(modelClass.getSystolic())<120) holder.tx2.setTextColor(Color.parseColor("#FF018786"));
+        else if(Integer.parseInt(modelClass.getSystolic())<=139) holder.tx2.setTextColor(Color.parseColor("#3C96DD"));
+        else holder.tx2.setTextColor(Color.parseColor("#C3473E"));
 
 
-        //if (record.getHeartRate()>60 && record.getHeartRate()<100) holder.heartTextView.setTextColor(Color.parseColor("#FF018786"));
-        //else if(record.getHeartRate()>=40) holder.heartTextView.setTextColor(Color.parseColor("#3C96DD"));
-        //else holder.heartTextView.setTextColor(Color.parseColor("#C3473E"));
+        if (Integer.parseInt(modelClass.getBloodPressure())>60 && Integer.parseInt(modelClass.getBloodPressure())<100) holder.tx4.setTextColor(Color.parseColor("#FF018786"));
+        else if(Integer.parseInt(modelClass.getBloodPressure())>=40) holder.tx4.setTextColor(Color.parseColor("#3C96DD"));
+        else holder.tx4.setTextColor(Color.parseColor("#C3473E"));
 
 
 

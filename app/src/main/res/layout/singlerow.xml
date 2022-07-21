@@ -74,7 +74,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            android:text="systolic"
+                            android:text="Diastolic"
                             android:textColor="#6E4092"
                             android:textSize="24sp"
                             android:textStyle="bold" />
@@ -115,7 +115,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:padding="5dp"
-                            android:text="Diastolic"
+                            android:text="systolic"
                             android:textColor="#429FE4"
                             android:textSize="24sp"
                             android:textStyle="bold" />
