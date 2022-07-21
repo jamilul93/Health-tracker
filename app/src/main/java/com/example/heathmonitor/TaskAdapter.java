@@ -3,11 +3,13 @@ package com.example.heathmonitor;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder> {
     private  Context mContext;
     private ArrayList<ModelClass> mclass;
+    private  ModelClass modelClass;
     private ClickListener clickListener;
     public  TaskAdapter(Context context, ArrayList<ModelClass>mclass) {
         this.mclass= mclass;
@@ -26,6 +29,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
     class TaskViewholder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
         TextView tx1,tx2,tx3,tx4;
         Button editButton,deleteButton;
+        TextView status;
 
         public TaskViewholder(@NonNull View itemView) {
             super(itemView);
@@ -35,6 +39,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
             tx4=itemView.findViewById(R.id.tvHeartRate);
             editButton=itemView.findViewById(R.id.Edit_buttonId);
             deleteButton = itemView.findViewById(R.id.DeleteBUttonId);
+
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
 
@@ -96,6 +101,24 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
 
             }
         });
+        modelClass = mclass.get(position);
+        if (Integer.parseInt(modelClass.getDiastolic())<80 )holder.tx2.setTextColor(Color.parseColor("#FF018786"));
+       else if(Integer.parseInt(modelClass.getDiastolic())<89)
+            holder.tx3.setTextColor(Color.parseColor("#3C96DD"));
+        else holder.tx3.setTextColor(Color.parseColor("#C3473E"));
+
+
+        //if (record.getSystolic()<120) holder.systolicTextView.setTextColor(Color.parseColor("#FF018786"));
+        //else if(record.getSystolic()<=139) holder.systolicTextView.setTextColor(Color.parseColor("#3C96DD"));
+        //else holder.systolicTextView.setTextColor(Color.parseColor("#C3473E"));
+
+
+        //if (record.getHeartRate()>60 && record.getHeartRate()<100) holder.heartTextView.setTextColor(Color.parseColor("#FF018786"));
+        //else if(record.getHeartRate()>=40) holder.heartTextView.setTextColor(Color.parseColor("#3C96DD"));
+        //else holder.heartTextView.setTextColor(Color.parseColor("#C3473E"));
+
+
+
     }
 
 
