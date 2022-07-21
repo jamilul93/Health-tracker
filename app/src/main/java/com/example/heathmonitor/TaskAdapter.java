@@ -17,14 +17,15 @@ import java.util.ArrayList;
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder> {
     private  Context mContext;
     private ArrayList<ModelClass> mclass;
+    private ClickListener clickListener;
     public  TaskAdapter(Context context, ArrayList<ModelClass>mclass) {
         this.mclass= mclass;
         this.mContext = context;
 
     }
-    class TaskViewholder extends RecyclerView.ViewHolder{
+    class TaskViewholder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
         TextView tx1,tx2,tx3,tx4;
-        Button UpdateButton;
+        Button editButton,deleteButton;
 
         public TaskViewholder(@NonNull View itemView) {
             super(itemView);
@@ -32,8 +33,29 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
             tx2= itemView.findViewById(R.id.tvDiastolic);
             tx3=itemView.findViewById(R.id.tvSystolic);
             tx4=itemView.findViewById(R.id.tvHeartRate);
-            UpdateButton = itemView.findViewById(R.id.UpdateButtonId);
+            editButton=itemView.findViewById(R.id.Edit_buttonId);
+            deleteButton = itemView.findViewById(R.id.DeleteBUttonId);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+
+
         }
+
+        @Override
+        public void onClick(View view) {
+            clickListener.customOnClick(getAdapterPosition(), view);
+
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            clickListener.customOnLongClick(getAdapterPosition(), view);
+            return true;
+        }
+    }
+    public void setClickListener(ClickListener clickL)
+    {
+        this.clickListener = clickL;
     }
 
     @NonNull
@@ -44,21 +66,38 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
         return new TaskViewholder (view);
     }
 
+    public interface ClickListener {
+        void customOnClick(int position, View v);
+
+        void customOnLongClick(int position, View v);
+
+        void onDeleteClick(int position);
+
+        void onEditClick(int position);
+
+    }
+
     @Override
     public void onBindViewHolder(@NonNull TaskAdapter.TaskViewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.tx1.setText(mclass.get(position).getDate());
         holder.tx2.setText(mclass.get(position).getSystolic());
         holder.tx3.setText(mclass.get(position).getDiastolic());
         holder.tx4.setText(mclass.get(position).getBloodPressure());
-        holder.UpdateButton.setOnClickListener(new View.OnClickListener() {
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickListener.onDeleteClick(position);
+            }
+        });
+        holder.editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, UpdateActivity.class);
-                intent.putExtra("index",position);
-                mContext.startActivity(intent);
+                clickListener.onEditClick(position);
+
             }
         });
     }
+
 
     @Override
     public int getItemCount() {

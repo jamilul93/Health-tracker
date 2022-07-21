@@ -188,7 +188,7 @@
                     android:padding="10dp">
 
                     <Button
-                        android:id="@+id/EditBuutonId"
+                        android:id="@+id/Edit_buttonId"
                         android:layout_width="56dp"
                         android:layout_height="56dp"
                         android:drawableRight="@drawable/ic_baseline_edit_24"

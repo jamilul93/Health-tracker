@@ -1,11 +1,14 @@
 package com.example.heathmonitor;
 
+
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.sax.StartElementListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,39 +24,57 @@ public class UpdateActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Gson gson;
-    ArrayList<ModelClass> recordsArrayList;
+    ArrayList<ModelClass> mcl;
     ModelClass modelClass;
-    EditText date,time,systolic,diastolic,heartRate,comment;
+    EditText dateET,timeET,systolicET,diastolicET,heartRateET,commentET;
+    String date, time, systolic,diastolic,bloodPressure,comment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
         Intent intent = getIntent();
         int index = intent.getIntExtra("index",0);
-        date= findViewById(R.id.UdateValue);
-        time = findViewById(R.id.UtimeValue);
-        systolic = findViewById(R.id.UsystolicValue);
-        diastolic = findViewById(R.id.diastolicValue);
-        heartRate = findViewById(R.id.heartRateValue);
-        comment = findViewById(R.id.commentValue);
+        dateET= findViewById(R.id.UdateValue);
+        timeET = findViewById(R.id.UtimeValue);
+        systolicET = findViewById(R.id.UsystolicValue);
+        diastolicET = findViewById(R.id.UdiastolicValue);
+        heartRateET = findViewById(R.id.UheartRateValue);
+        commentET = findViewById(R.id.UcommentValue);
         Button updateButton = findViewById( R.id.UpdateButtonId);
         retrieveData();
+        modelClass = mcl.get(index);
+
+        dateET.setText(modelClass.getDate());
+        timeET.setText(modelClass.getTime());
+        systolicET.setText(modelClass.getSystolic());
+        diastolicET.setText(modelClass.getDiastolic());
+        heartRateET.setText(modelClass.getBloodPressure());
+        commentET.setText(modelClass.getComment());
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                date= dateET.getText().toString();
+                time=timeET.getText().toString();
+                systolic=systolicET.getText().toString();
+                diastolic=diastolicET.getText().toString();
+                bloodPressure =heartRateET.getText().toString();
+                comment= commentET.getText().toString();
+                modelClass = new ModelClass(date,time,systolic,diastolic,bloodPressure,comment);
+                mcl.set(index,modelClass);
                 PreferenceManager.getDefaultSharedPreferences(UpdateActivity.this).edit().clear().commit();
                 saveData();
+                    //public ModelClass(String date, String time, String systolic, String diastolic, String bloodPressure, String comment) {
+                MainActivity.mcl.set(index,modelClass);
+                MainActivity.adapter.notifyDataSetChanged();
+                //adapter.notifyItemChanged(index);
+                Toast.makeText(UpdateActivity.this,"Update successful",Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent(UpdateActivity.this,MainActivity.class));
+                finish();
             }
 
         });
-        modelClass = recordsArrayList.get(index);
 
-        date.setText(""+modelClass.getDate());
-        time.setText(""+modelClass.getTime());
-        systolic.setText(""+modelClass.getSystolic());
-        diastolic.setText(""+modelClass.getDiastolic());
-        heartRate.setText(""+modelClass.getBloodPressure());
-        comment.setText(""+modelClass.getComment());
 
 
     }
@@ -61,22 +82,22 @@ public class UpdateActivity extends AppCompatActivity {
 
         private void retrieveData()
         {
-            sharedPreferences = getSharedPreferences("shared",MODE_PRIVATE);
+            sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
             gson = new Gson();
             String jsonString = sharedPreferences.getString("jami",null);
             Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
-            recordsArrayList = gson.fromJson(jsonString,type);
-            if(recordsArrayList ==null)
+            mcl = gson.fromJson(jsonString,type);
+            if(mcl ==null)
             {
-                recordsArrayList = new ArrayList<>();
+                mcl = new ArrayList<>();
             }
         }
     private void saveData()
     {
-        sharedPreferences = getSharedPreferences("shared",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
         editor = sharedPreferences.edit();
         gson = new Gson();
-        String jsonString = gson.toJson(recordsArrayList);
+        String jsonString = gson.toJson(mcl);
         editor.putString("jami",jsonString);
         editor.apply();
     }

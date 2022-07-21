@@ -90,7 +90,6 @@ public class DataEntry extends AppCompatActivity {
         if ((Integer.parseInt(edtx2.getText().toString()) >= 0) && (Integer.parseInt(edtx2.getText().toString()) <= 200)) {
             if ((Integer.parseInt(edtx3.getText().toString()) >= 0) && (Integer.parseInt(edtx3.getText().toString()) <= 150)) {
                 if ((Integer.parseInt(edtx4.getText().toString()) >= 0) && (Integer.parseInt(edtx4.getText().toString())<=150)) {
-                    Toast.makeText(DataEntry.this,"HI",Toast.LENGTH_LONG).show();
                     date= edtx1.getText().toString();
                     time=edtx5.getText().toString();
                     systolic=edtx2.getText().toString();
@@ -101,8 +100,12 @@ public class DataEntry extends AppCompatActivity {
                     jamiArray.add(modelclass);
                     PreferenceManager.getDefaultSharedPreferences(DataEntry.this).edit().clear().commit();
                     saveData();
+                    MainActivity.mcl.add(modelclass);
+                    MainActivity.adapter.notifyDataSetChanged();
+                    Toast.makeText(DataEntry.this,"Data Insertion Successful",Toast.LENGTH_LONG).show();
 
-                    startActivity(new Intent(DataEntry.this,MainActivity.class));
+
+                    finish();
 
                 }
                 else{
@@ -122,7 +125,7 @@ public class DataEntry extends AppCompatActivity {
 
     private void retrieveData()
     {
-        sharedPreferences = getSharedPreferences("shared preference",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
         gson = new Gson();
         String jsonString = sharedPreferences.getString("jami",null);
         Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
@@ -134,7 +137,7 @@ public class DataEntry extends AppCompatActivity {
     }
     private void saveData()
     {
-        sharedPreferences = getSharedPreferences("shared preference",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
         editor = sharedPreferences.edit();
         gson = new Gson();
         String jsonString = gson.toJson(jamiArray);

@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -18,7 +19,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView1;
-    private TaskAdapter adapter;
+    public static TaskAdapter adapter;
+    public static ArrayList<ModelClass> mcl;
+
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -29,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
     Button button;
     String s1,s2,s3,s4;
-    private ArrayList<ModelClass> mcl= new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this,DataEntry.class);
                 startActivity(intent);
+                //finish();
 
             }
         });
@@ -53,6 +56,37 @@ public class MainActivity extends AppCompatActivity {
         recyclerView1=findViewById(R.id.recyclarView);
         adapter =new TaskAdapter(MainActivity.this, mcl);
         recyclerView1.setAdapter(adapter);
+        adapter.setClickListener(new TaskAdapter.ClickListener() {
+            @Override
+            public void customOnClick(int position, View v) {
+
+            }
+
+            @Override
+            public void customOnLongClick(int position, View v) {
+
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                mcl.remove(position);
+                adapter.notifyItemRemoved(position);
+                saveData();
+                Toast.makeText(MainActivity.this,"Delete Successful",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onEditClick(int position) {
+                Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
+                intent.putExtra("index",position);
+                startActivity(intent);
+                //finish();
+
+            }
+        });
+
+
+
     }
 
 /*    private void AddTask() {
@@ -63,9 +97,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     }*/
+private void saveData()
+{
+    sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
+    editor = sharedPreferences.edit();
+    gson = new Gson();
+    String jsonString = gson.toJson(mcl);
+    editor.putString("jami",jsonString);
+    editor.apply();
+}
     private void retrieveData()
     {
-        sharedPreferences = getSharedPreferences("shared preference",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
         gson = new Gson();
         String jsonString = sharedPreferences.getString("jami",null);
         Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
