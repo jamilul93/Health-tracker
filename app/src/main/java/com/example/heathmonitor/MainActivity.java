@@ -20,8 +20,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView1;
     public static TaskAdapter adapter;
-    public static ArrayList<ModelClass> mcl;
-
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -54,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mcl.add(new ModelClass("22-10-22","120","80","66"));
         mcl.add(new ModelClass("22-10-22","120","80","66"));*/
         recyclerView1=findViewById(R.id.recyclarView);
-        adapter =new TaskAdapter(MainActivity.this, mcl);
+        adapter =new TaskAdapter(MainActivity.this, RecordList.mcl);
         recyclerView1.setAdapter(adapter);
         adapter.setClickListener(new TaskAdapter.ClickListener() {
             @Override
@@ -69,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDeleteClick(int position) {
-                mcl.remove(position);
+                RecordList.mcl.remove(position);
                 adapter.notifyItemRemoved(position);
                 saveData();
                 Toast.makeText(MainActivity.this,"Delete Successful",Toast.LENGTH_SHORT).show();
@@ -109,7 +107,7 @@ private void saveData()
     sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
     editor = sharedPreferences.edit();
     gson = new Gson();
-    String jsonString = gson.toJson(mcl);
+    String jsonString = gson.toJson(RecordList.mcl);
     editor.putString("jami",jsonString);
     editor.apply();
 }
@@ -119,10 +117,10 @@ private void saveData()
         gson = new Gson();
         String jsonString = sharedPreferences.getString("jami",null);
         Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
-        mcl = gson.fromJson(jsonString,type);
-        if(mcl ==null)
+        RecordList.mcl = gson.fromJson(jsonString,type);
+        if(RecordList.mcl ==null)
         {
-            mcl = new ArrayList<>();
+            RecordList.mcl = new ArrayList<>();
         }
 //        mcl.clear();
 //        saveData();
