@@ -55,7 +55,7 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 date= dateET.getText().toString();
-                time=timeET.getText().toString();
+                time= timeET.getText().toString();
                 systolic=systolicET.getText().toString();
                 diastolic=diastolicET.getText().toString();
                 bloodPressure =heartRateET.getText().toString();
@@ -64,7 +64,7 @@ public class UpdateActivity extends AppCompatActivity {
                 mcl.set(index,modelClass);
                 PreferenceManager.getDefaultSharedPreferences(UpdateActivity.this).edit().clear().commit();
                 saveData();
-                    //public ModelClass(String date, String time, String systolic, String diastolic, String bloodPressure, String comment) {
+                //public ModelClass(String date, String time, String systolic, String diastolic, String bloodPressure, String comment) {
                 MainActivity.mcl.set(index,modelClass);
                 MainActivity.adapter.notifyDataSetChanged();
                 //adapter.notifyItemChanged(index);
@@ -80,18 +80,18 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
 
-        private void retrieveData()
+    private void retrieveData()
+    {
+        sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
+        gson = new Gson();
+        String jsonString = sharedPreferences.getString("jami",null);
+        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
+        mcl = gson.fromJson(jsonString,type);
+        if(mcl ==null)
         {
-            sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
-            gson = new Gson();
-            String jsonString = sharedPreferences.getString("jami",null);
-            Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
-            mcl = gson.fromJson(jsonString,type);
-            if(mcl ==null)
-            {
-                mcl = new ArrayList<>();
-            }
+            mcl = new ArrayList<>();
         }
+    }
     private void saveData()
     {
         sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
@@ -103,4 +103,4 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
 
-    }
+}
