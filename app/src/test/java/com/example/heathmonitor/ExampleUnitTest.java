@@ -1,4 +1,4 @@
-package com.example.cardiactracker;
+package com.example.heathmonitor;
 
 import org.junit.Test;
 
