@@ -188,10 +188,9 @@
 
         <Button
             android:id="@+id/addButton"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:background="?android:attr/selectableItemBackground"
             android:text="Save"
             />
     </FrameLayout>

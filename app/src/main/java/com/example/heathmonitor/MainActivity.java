@@ -83,6 +83,13 @@ public class MainActivity extends AppCompatActivity {
                 //finish();
 
             }
+            @Override
+            public void DetailClick(int position){
+                //Toast.makeText(MainActivity.this,"clicked",Toast.LENGTH_SHORT);
+                Intent intent1= new Intent(MainActivity.this,Details_Activity.class);
+                intent1.putExtra("index",position);
+                startActivity(intent1);
+            }
         });
 
 
