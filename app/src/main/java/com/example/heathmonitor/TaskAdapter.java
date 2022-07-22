@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
     private ArrayList<ModelClass> mclass;
     private  ModelClass modelClass;
     private ClickListener clickListener;
+    public CardView cardView;
     public  TaskAdapter(Context context, ArrayList<ModelClass>mclass) {
         this.mclass= mclass;
         this.mContext = context;
@@ -39,6 +41,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
             tx4=itemView.findViewById(R.id.tvHeartRate);
             editButton=itemView.findViewById(R.id.Edit_buttonId);
             deleteButton = itemView.findViewById(R.id.DeleteBUttonId);
+            cardView= itemView.findViewById(R.id.CardView);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
@@ -103,7 +106,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
 
             }
         });
-        holder.tx1.setOnClickListener(new View.OnClickListener() {
+        holder.tx2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 clickListener.DetailClick(position);

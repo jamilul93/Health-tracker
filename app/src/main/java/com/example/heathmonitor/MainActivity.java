@@ -124,5 +124,7 @@ private void saveData()
         {
             mcl = new ArrayList<>();
         }
+//        mcl.clear();
+//        saveData();
     }
 }
