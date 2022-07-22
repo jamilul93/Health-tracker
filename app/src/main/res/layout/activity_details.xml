@@ -127,7 +127,7 @@
       app:layout_constraintStart_toStartOf="@+id/header"
       app:layout_constraintTop_toBottomOf="@+id/diastolic" />
 
-  <EditText
+  <TextView
       android:id="@+id/DheartRateValue"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
