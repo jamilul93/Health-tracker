@@ -40,7 +40,7 @@ public class DataEntry extends AppCompatActivity {
         edtx2=findViewById(R.id.systolicValue);
         edtx3= findViewById(R.id.diastolicValue);
         edtx4 =findViewById(R.id.heartRateValue);
-        edtx5=findViewById(R.id.dateValue);
+        edtx5=findViewById(R.id.timeValue);
         edtx6=findViewById(R.id.commentValue);
 
         retrieveData();
