@@ -30,4 +30,29 @@ Health Tracker is an app which is an electronic application used to record and m
 ![insert](https://user-images.githubusercontent.com/62686801/180516480-46c012a8-40a7-4fd6-9073-2cf06e8579ea.png)
 
 
+# Mock Up
+
+### Start the App
+
+![splashSc](https://user-images.githubusercontent.com/62686801/180557955-ace80620-8557-453e-9c5c-5427f9783b50.jpg)
+
+### Main page:
+
+![Mainpagemockup](https://user-images.githubusercontent.com/62686801/180558194-ae565175-cacb-48fa-854c-5263c958827d.jpg)
+
+### Create page:
+
+![createpage](https://user-images.githubusercontent.com/62686801/180558269-a354fea9-3ebb-4381-b5f6-ab203ddb41ec.jpg)
+
+### details page:
+
+![detailsmocup png-1](https://user-images.githubusercontent.com/62686801/180558360-9253177a-ff86-4014-a401-70e8251cc1f2.jpg)
+
+### insert page:
+
+![insertmocup](https://user-images.githubusercontent.com/62686801/180559737-693f3f54-f9cf-4d30-a861-83860ec20977.png)
+
+
+
+
 
