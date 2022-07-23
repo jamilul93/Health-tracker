@@ -67,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDeleteClick(int position) {
-                RecordList.mcl.remove(position);
+
+               // RecordList.mcl.remove(position);
+                new RecordList().deleteRecord(position);
                 adapter.notifyItemRemoved(position);
                 saveData();
                 Toast.makeText(MainActivity.this,"Delete Successful",Toast.LENGTH_SHORT).show();
