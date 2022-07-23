@@ -20,15 +20,18 @@ public class RecordList {
 
     }
     public void deleteRecord(int position){
-       if (position>=0 && position<mcl.size()) {
-           mcl.remove(position);
-       }
-       else {
-          throw new IllegalArgumentException() ;
-       }
+
+
+        if (position>=0 && position<mcl.size()) {
+            mcl.remove(position);
+        }
+        else {
+            throw new IllegalArgumentException() ;
+        }
+
 
     }
-     public int  count(){
+    public int  count(){
         return  mcl.size();
     }
 
