@@ -22,7 +22,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
     private ArrayList<ModelClass> mclass;
     private  ModelClass modelClass;
     private ClickListener clickListener;
-    public CardView cardView;
     public  TaskAdapter(Context context, ArrayList<ModelClass>mclass) {
         this.mclass= mclass;
         this.mContext = context;
@@ -32,6 +31,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
         TextView tx1,tx2,tx3,tx4;
         Button editButton,deleteButton;
         TextView status;
+        CardView cardView;
 
         public TaskViewholder(@NonNull View itemView) {
             super(itemView);
@@ -106,7 +106,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
 
             }
         });
-        holder.tx2.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 clickListener.DetailClick(position);

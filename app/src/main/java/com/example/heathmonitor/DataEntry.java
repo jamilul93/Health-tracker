@@ -25,7 +25,8 @@ public class DataEntry extends AppCompatActivity {
    Button saveButton;
    String date,time,systolic,diastolic,bloodPressure,comment ;
    EditText edtx1,edtx2,edtx3,edtx4,edtx5,edtx6;
-   ArrayList<ModelClass> jamiArray;
+   //RecordList recordList=new RecordList();
+  // ArrayList<ModelClass> jamiArray;
    SharedPreferences sharedPreferences;
    SharedPreferences.Editor editor;
    ModelClass modelclass;
@@ -42,8 +43,6 @@ public class DataEntry extends AppCompatActivity {
         edtx4 =findViewById(R.id.heartRateValue);
         edtx5=findViewById(R.id.timeValue);
         edtx6=findViewById(R.id.commentValue);
-
-        retrieveData();
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,10 +96,11 @@ public class DataEntry extends AppCompatActivity {
                     bloodPressure =edtx4.getText().toString();
                     comment= edtx6.getText().toString();
                     modelclass = new ModelClass(date,time,systolic,diastolic,bloodPressure,comment);
-                    jamiArray.add(modelclass);
+                    new RecordList().addRecord(modelclass);
+                    //jamiArray.add(modelclass);
                     PreferenceManager.getDefaultSharedPreferences(DataEntry.this).edit().clear().commit();
                     saveData();
-                    MainActivity.mcl.add(modelclass);
+                    RecordList.mcl.add(modelclass);
                     MainActivity.adapter.notifyDataSetChanged();
                     Toast.makeText(DataEntry.this,"Data Insertion Successful",Toast.LENGTH_LONG).show();
 
@@ -123,24 +123,12 @@ public class DataEntry extends AppCompatActivity {
         }
     }
 
-    private void retrieveData()
-    {
-        sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
-        gson = new Gson();
-        String jsonString = sharedPreferences.getString("jami",null);
-        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
-        jamiArray = gson.fromJson(jsonString,type);
-        if(jamiArray ==null)
-        {
-            jamiArray = new ArrayList<>();
-        }
-    }
     private void saveData()
     {
         sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
         editor = sharedPreferences.edit();
         gson = new Gson();
-        String jsonString = gson.toJson(jamiArray);
+        String jsonString = gson.toJson(RecordList.mcl);
         editor.putString("jami",jsonString);
         editor.apply();
     }

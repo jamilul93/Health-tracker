@@ -19,7 +19,7 @@ public class Details_Activity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Gson gson;
-    ArrayList<ModelClass> mcl;
+    ArrayList<ModelClass> mcl = RecordList.mcl;
     ModelClass modelClass;
     TextView dateT,timeT,systolicT,diastolicT,heartRateT,commentT;
 

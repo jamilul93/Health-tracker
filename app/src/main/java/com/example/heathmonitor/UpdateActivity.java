@@ -24,7 +24,6 @@ public class UpdateActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Gson gson;
-    ArrayList<ModelClass> mcl;
     ModelClass modelClass;
     EditText dateET,timeET,systolicET,diastolicET,heartRateET,commentET;
     String date, time, systolic,diastolic,bloodPressure,comment;
@@ -42,8 +41,7 @@ public class UpdateActivity extends AppCompatActivity {
         heartRateET = findViewById(R.id.UheartRateValue);
         commentET = findViewById(R.id.UcommentValue);
         Button updateButton = findViewById( R.id.UpdateButtonId);
-        retrieveData();
-        modelClass = mcl.get(index);
+        modelClass = RecordList.mcl.get(index);
 
         dateET.setText(modelClass.getDate());
         timeET.setText(modelClass.getTime());
@@ -61,11 +59,11 @@ public class UpdateActivity extends AppCompatActivity {
                 bloodPressure =heartRateET.getText().toString();
                 comment= commentET.getText().toString();
                 modelClass = new ModelClass(date,time,systolic,diastolic,bloodPressure,comment);
-                mcl.set(index,modelClass);
+                RecordList.mcl.set(index,modelClass);
                 PreferenceManager.getDefaultSharedPreferences(UpdateActivity.this).edit().clear().commit();
                 saveData();
                 //public ModelClass(String date, String time, String systolic, String diastolic, String bloodPressure, String comment) {
-                MainActivity.mcl.set(index,modelClass);
+                RecordList.mcl.set(index,modelClass);
                 MainActivity.adapter.notifyDataSetChanged();
                 //adapter.notifyItemChanged(index);
                 Toast.makeText(UpdateActivity.this,"Update successful",Toast.LENGTH_SHORT).show();
@@ -80,24 +78,12 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
 
-    private void retrieveData()
-    {
-        sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
-        gson = new Gson();
-        String jsonString = sharedPreferences.getString("jami",null);
-        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
-        mcl = gson.fromJson(jsonString,type);
-        if(mcl ==null)
-        {
-            mcl = new ArrayList<>();
-        }
-    }
     private void saveData()
     {
         sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
         editor = sharedPreferences.edit();
         gson = new Gson();
-        String jsonString = gson.toJson(mcl);
+        String jsonString = gson.toJson(RecordList.mcl);
         editor.putString("jami",jsonString);
         editor.apply();
     }
