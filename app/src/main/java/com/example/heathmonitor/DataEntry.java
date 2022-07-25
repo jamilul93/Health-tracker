@@ -123,7 +123,7 @@ public class DataEntry extends AppCompatActivity {
         }
     }
 
-    private void saveData()
+   public  void saveData()
     {
         sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
         editor = sharedPreferences.edit();
