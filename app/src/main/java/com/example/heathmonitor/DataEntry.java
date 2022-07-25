@@ -100,7 +100,7 @@ public class DataEntry extends AppCompatActivity {
                     //jamiArray.add(modelclass);
                     PreferenceManager.getDefaultSharedPreferences(DataEntry.this).edit().clear().commit();
                     saveData();
-                    RecordList.mcl.add(modelclass);
+                    //RecordList.mcl.add(modelclass);
                     MainActivity.adapter.notifyDataSetChanged();
                     Toast.makeText(DataEntry.this,"Data Insertion Successful",Toast.LENGTH_LONG).show();
 
@@ -123,7 +123,7 @@ public class DataEntry extends AppCompatActivity {
         }
     }
 
-    private void saveData()
+   public  void saveData()
     {
         sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
         editor = sharedPreferences.edit();
