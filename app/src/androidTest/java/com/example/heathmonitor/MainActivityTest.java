@@ -13,6 +13,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -43,12 +44,30 @@ public class MainActivityTest {
         onView(withId(R.id.timeValue)).perform(ViewActions.typeText("10:19"));
         onView(withId(R.id.systolicValue)).perform(ViewActions.typeText("120"));
         onView(withId(R.id.diastolicValue)).perform(ViewActions.typeText("90"));
-        pressBack();
-        onView(withId(R.id.heartRateValue)).perform(ViewActions.typeText("69"));
+       // pressBack();
+        onView(withId(R.id.heartRateValue)).perform(ViewActions.typeText("80"));
         pressBack();
         onView(withId(R.id.commentValue)).perform(ViewActions.typeText("UI test data insert"));
         pressBack();
         onView(withId(R.id.addButton)).perform(click());
+
+
+       // onView(withId(R.id.AddBUttonId)).perform(click());
+//        onView(withId(R.id.dateValue)).perform(ViewActions.typeText("13/10/2021"));
+//        onView(withId(R.id.timeValue)).perform(ViewActions.typeText("10:19"));
+//        onView(withId(R.id.systolicValue)).perform(ViewActions.typeText("130"));
+//        onView(withId(R.id.diastolicValue)).perform(ViewActions.typeText("90"));
+//        // pressBack();
+//        onView(withId(R.id.heartRateValue)).perform(ViewActions.typeText("70"));
+//        pressBack();
+//        onView(withId(R.id.commentValue)).perform(ViewActions.typeText("UI test data insert"));
+//        pressBack();
+//       // onView(withId(R.id.addButton)).perform(click());
+//        onView(withId(R.id.addButton)).perform(click());
+
+
+
+     //   RecordList.mcl.clear();
 
 
 
@@ -75,7 +94,7 @@ public class MainActivityTest {
         onView(withId(R.id.UsystolicValue)).perform(ViewActions.typeText("110"));
         onView(withId(R.id.UdiastolicValue)).perform(ViewActions.clearText());
         onView(withId(R.id.UdiastolicValue)).perform(ViewActions.typeText("80"));
-        pressBack();
+       // pressBack();
         onView(withId(R.id.UheartRateValue)).perform(ViewActions.clearText());
         onView(withId(R.id.UheartRateValue)).perform(ViewActions.typeText("70"));
         pressBack();
@@ -91,7 +110,8 @@ public class MainActivityTest {
         onView(withId(R.id.recyclarView)).perform(
                 RecyclerViewActions.actionOnItemAtPosition(0, JamiViewAction.clickChildViewWithId(R.id.DeleteBUttonId)));
 
-
+        RecordList.mcl.clear();
+        new Utils().saveData(InstrumentationRegistry.getInstrumentation().getContext());
 
     }
 
