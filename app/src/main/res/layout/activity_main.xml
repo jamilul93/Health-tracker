@@ -13,13 +13,14 @@
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/singlerow" />
+
     <Button
         android:id="@+id/AddBUttonId"
-        android:text="addData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
+        android:text="addData" />
 
 
 </RelativeLayout>

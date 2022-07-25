@@ -164,7 +164,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
-        android:layout_marginEnd="30dp"
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/white"
         android:hint="Comment"
@@ -175,8 +174,10 @@
         app:layout_constraintStart_toStartOf="@+id/header"
         app:layout_constraintTop_toBottomOf="@+id/comment" />
 
+
+
     <FrameLayout
-        android:id="@+id/updateFrameLayout"
+        android:id="@+id/addFrameLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -184,6 +185,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:backgroundTint="#7A0D0D"
         android:layout_marginBottom="27dp"
+
         tools:ignore="MissingConstraints">
 
         <Button
