@@ -8,8 +8,10 @@ import java.util.List;
 public class RecordList {
 
     public static ArrayList<ModelClass> mcl= new ArrayList<>();
+
     /**
-     *
+     * Add records for the main page list
+     * @param modelClass
      */
     public void addRecord(ModelClass modelClass){
         if(mcl.contains(modelClass)){
@@ -19,6 +21,12 @@ public class RecordList {
 
 
     }
+
+    /**
+     * delete records from the main page list.
+     * @param position
+     */
+
     public void deleteRecord(int position){
 
 
