@@ -30,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
     Button button;
     String s1,s2,s3,s4;
+
+    /**
+     * Data Entry for the users and have
+     * a highlights in main page
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         button=findViewById(R.id.AddBUttonId);
         retrieveData();
 
+        /**
+         *
+         */
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+            /**
+             * Delete button to delete data
+             * from main page list.
+             * @param position
+             */
+
             @Override
             public void onDeleteClick(int position) {
 
@@ -75,6 +91,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Delete Successful",Toast.LENGTH_SHORT).show();
             }
 
+            /**
+             * Edit button to edit data from
+             * editing page.
+             * @param position
+             */
+
             @Override
             public void onEditClick(int position) {
                 Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
@@ -83,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
                 //finish();
 
             }
+
+            /**
+             * goto the edit page on click the edit button.
+             * @param position
+             */
+
             @Override
             public void DetailClick(int position){
                 //Toast.makeText(MainActivity.this,"clicked",Toast.LENGTH_SHORT);
@@ -104,6 +132,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }*/
+
+    /**
+     *save the data
+     */
+
 private void saveData()
 {
     sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
@@ -113,6 +146,10 @@ private void saveData()
     editor.putString("jami",jsonString);
     editor.apply();
 }
+
+    /**
+     * Retrieve from Shared preference.
+     */
     private void retrieveData()
     {
         sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
