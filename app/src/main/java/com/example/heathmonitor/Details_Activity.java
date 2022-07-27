@@ -23,6 +23,12 @@ public class Details_Activity extends AppCompatActivity {
     ModelClass modelClass;
     TextView dateT,timeT,systolicT,diastolicT,heartRateT,commentT;
 
+    /**
+     * creating the form where details of the
+     * given data will show
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +52,11 @@ public class Details_Activity extends AppCompatActivity {
         commentT.setText(modelClass.getComment());
 
     }
+
+    /**
+     * Data retrieve from shared preference
+     */
+
     private void retrieveData()
     {
         sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);
