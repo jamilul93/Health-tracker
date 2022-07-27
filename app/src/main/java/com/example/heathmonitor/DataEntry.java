@@ -31,6 +31,12 @@ public class DataEntry extends AppCompatActivity {
    SharedPreferences.Editor editor;
    ModelClass modelclass;
    Gson gson;
+
+    /**
+     *  creating form where user give
+     *  input.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +49,11 @@ public class DataEntry extends AppCompatActivity {
         edtx4 =findViewById(R.id.heartRateValue);
         edtx5=findViewById(R.id.timeValue);
         edtx6=findViewById(R.id.commentValue);
+
+        /**
+         * button for save the data to
+         * the database
+         */
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +95,10 @@ public class DataEntry extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * add the data in shared preference given by users.
+     */
 
     private void inputFormat() {
         if(!TextUtils.isEmpty(edtx5.getText())) {
@@ -134,6 +149,9 @@ public class DataEntry extends AppCompatActivity {
             }
     }
 
+    /**
+     * Save the data.
+     */
    public  void saveData()
     {
         sharedPreferences = getSharedPreferences("jami",MODE_PRIVATE);

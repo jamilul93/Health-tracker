@@ -29,6 +29,12 @@ public class UpdateActivity extends AppCompatActivity {
     EditText dateET,timeET,systolicET,diastolicET,heartRateET,commentET;
     String date, time, systolic,diastolic,bloodPressure,comment;
 
+    /**
+     * Update the data from this page.
+     * Users can update their data by
+     * inserting new data in this page.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +56,7 @@ public class UpdateActivity extends AppCompatActivity {
         diastolicET.setText(modelClass.getDiastolic());
         heartRateET.setText(modelClass.getBloodPressure());
         commentET.setText(modelClass.getComment());
+
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +89,9 @@ public class UpdateActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * save data in the shared preference.
+     */
 
 
     private void saveData()

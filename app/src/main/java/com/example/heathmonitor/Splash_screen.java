@@ -12,6 +12,9 @@ import android.os.Handler;
 import android.view.View;
 import android.window.SplashScreen;
 
+/**
+ * App opening splash screen.
+ */
 
 public class Splash_screen extends AppCompatActivity {
 

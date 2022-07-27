@@ -17,6 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+/**
+ *
+ */
+
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder> {
     private  Context mContext;
     private ArrayList<ModelClass> mclass;
@@ -27,6 +31,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
         this.mContext = context;
 
     }
+
+    /**
+     * Data are shown in the main page by recycler view.
+     */
+
     class TaskViewholder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
         TextView tx1,tx2,tx3,tx4;
         Button editButton,deleteButton;
@@ -49,12 +58,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
 
         }
 
+        /**
+         * view details
+         * @param view
+         */
+
         @Override
         public void onClick(View view) {
             clickListener.customOnClick(getAdapterPosition(), view);
 
         }
 
+        /**
+         * view details
+         * @param view
+         * @return
+         */
         @Override
         public boolean onLongClick(View view) {
             clickListener.customOnLongClick(getAdapterPosition(), view);
@@ -62,6 +81,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
         }
 
     }
+
+    /**
+     * click to delete
+     * @param clickL
+     */
     public void setClickListener(ClickListener clickL)
     {
         this.clickListener = clickL;
@@ -75,6 +99,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
         return new TaskViewholder (view);
     }
 
+    /**
+     *
+     */
+
     public interface ClickListener {
         void customOnClick(int position, View v);
 
@@ -87,6 +115,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
 
     }
 
+    /**
+     * get all parameter
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull TaskAdapter.TaskViewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.tx1.setText(mclass.get(position).getDate());
@@ -114,6 +147,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
 
             }
         });
+
+        /**
+         * Set condition of text colors.
+         */
+
         modelClass = mclass.get(position);
         if (Integer.parseInt(modelClass.getDiastolic())>60 && (Integer.parseInt(modelClass.getDiastolic())<90))holder.tx3.setTextColor(Color.parseColor("#FF018786"));
       // else if(Integer.parseInt(modelClass.getDiastolic())<89)
