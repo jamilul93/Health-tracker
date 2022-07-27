@@ -115,14 +115,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewholder
             }
         });
         modelClass = mclass.get(position);
-        if (Integer.parseInt(modelClass.getDiastolic())<80 )holder.tx3.setTextColor(Color.parseColor("#FF018786"));
-       else if(Integer.parseInt(modelClass.getDiastolic())<89)
-            holder.tx3.setTextColor(Color.parseColor("#3C96DD"));
+        if (Integer.parseInt(modelClass.getDiastolic())>60 && (Integer.parseInt(modelClass.getDiastolic())<90))holder.tx3.setTextColor(Color.parseColor("#FF018786"));
+      // else if(Integer.parseInt(modelClass.getDiastolic())<89)
+           // holder.tx3.setTextColor(Color.parseColor("#3C96DD"));
         else holder.tx3.setTextColor(Color.parseColor("#C3473E"));
 
 
-        if (Integer.parseInt(modelClass.getSystolic())<120) holder.tx2.setTextColor(Color.parseColor("#FF018786"));
-        else if(Integer.parseInt(modelClass.getSystolic())<=139) holder.tx2.setTextColor(Color.parseColor("#3C96DD"));
+        if (Integer.parseInt(modelClass.getSystolic())>90 &&( Integer.parseInt(modelClass.getSystolic())<140)) holder.tx2.setTextColor(Color.parseColor("#FF018786"));
+        //else if(Integer.parseInt(modelClass.getSystolic())<=140) holder.tx2.setTextColor(Color.parseColor("#3C96DD"));
         else holder.tx2.setTextColor(Color.parseColor("#C3473E"));
 
 
