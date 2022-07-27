@@ -86,41 +86,52 @@ public class DataEntry extends AppCompatActivity {
     }
 
     private void inputFormat() {
-        if ((Integer.parseInt(edtx2.getText().toString()) >= 0) && (Integer.parseInt(edtx2.getText().toString()) <= 200)) {
-            if ((Integer.parseInt(edtx3.getText().toString()) >= 0) && (Integer.parseInt(edtx3.getText().toString()) <= 150)) {
-                if ((Integer.parseInt(edtx4.getText().toString()) >= 0) && (Integer.parseInt(edtx4.getText().toString())<=150)) {
-                    date= edtx1.getText().toString();
-                    time=edtx5.getText().toString();
-                    systolic=edtx2.getText().toString();
-                    diastolic=edtx3.getText().toString();
-                    bloodPressure =edtx4.getText().toString();
-                    comment= edtx6.getText().toString();
-                    modelclass = new ModelClass(date,time,systolic,diastolic,bloodPressure,comment);
-                    new RecordList().addRecord(modelclass);
-                    //jamiArray.add(modelclass);
-                    PreferenceManager.getDefaultSharedPreferences(DataEntry.this).edit().clear().commit();
-                    saveData();
-                    //RecordList.mcl.add(modelclass);
-                    MainActivity.adapter.notifyDataSetChanged();
-                    Toast.makeText(DataEntry.this,"Data Insertion Successful",Toast.LENGTH_LONG).show();
+        if(!TextUtils.isEmpty(edtx5.getText())) {
+            if (!TextUtils.isEmpty(edtx1.getText())) {
+                if ((Integer.parseInt(edtx2.getText().toString()) >= 0) && (Integer.parseInt(edtx2.getText().toString()) <= 200) && (!TextUtils.isEmpty(edtx2.getText()))) {
+                    if ((Integer.parseInt(edtx3.getText().toString()) >= 0) && (Integer.parseInt(edtx3.getText().toString()) <= 150) && (!TextUtils.isEmpty(edtx3.getText()))) {
+                        if ((Integer.parseInt(edtx4.getText().toString()) >= 0) && (Integer.parseInt(edtx4.getText().toString()) <= 150) && (!TextUtils.isEmpty(edtx4.getText()))) {
+
+                            date = edtx1.getText().toString();
+                            time = edtx5.getText().toString();
+                            systolic = edtx2.getText().toString();
+                            diastolic = edtx3.getText().toString();
+                            bloodPressure = edtx4.getText().toString();
+                            comment = edtx6.getText().toString();
+                            modelclass = new ModelClass(date, time, systolic, diastolic, bloodPressure, comment);
+                            new RecordList().addRecord(modelclass);
+                            //jamiArray.add(modelclass);
+                            PreferenceManager.getDefaultSharedPreferences(DataEntry.this).edit().clear().commit();
+                            saveData();
+                            //RecordList.mcl.add(modelclass);
+                            MainActivity.adapter.notifyDataSetChanged();
+                            Toast.makeText(DataEntry.this, "Data Insertion Successful", Toast.LENGTH_LONG).show();
 
 
-                    finish();
+                            finish();
 
+                        } else {
+                            edtx4.setError("Invalid data format added");
+
+                           // Toast.makeText(DataEntry.this, "Invalid data format added", Toast.LENGTH_LONG).show();
+
+                        }
+
+                    } else {
+                        edtx3.setError("Invalid data format added");
+                        //Toast.makeText(DataEntry.this, "Invalid data format added", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    edtx2.setError("Invalid data format added");
+                    //Toast.makeText(DataEntry.this, "Invalid data format added", Toast.LENGTH_LONG).show();
                 }
-                else{
-                    Toast.makeText(DataEntry.this,"Invalid data format added",Toast.LENGTH_LONG).show();
-
-                }
-
-            }
-            else {
-                Toast.makeText(DataEntry.this,"Invalid data format added",Toast.LENGTH_LONG).show();
+            } else {
+                edtx1.setError("The field must be required");
             }
         }
         else{
-            Toast.makeText(DataEntry.this,"Invalid data format added",Toast.LENGTH_LONG).show();
-        }
+            edtx5.setError("The field must be required");
+            }
     }
 
    public  void saveData()

@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.sax.StartElementListener;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,9 +50,13 @@ public class UpdateActivity extends AppCompatActivity {
         diastolicET.setText(modelClass.getDiastolic());
         heartRateET.setText(modelClass.getBloodPressure());
         commentET.setText(modelClass.getComment());
+
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 date= dateET.getText().toString();
                 time= timeET.getText().toString();
                 systolic=systolicET.getText().toString();
@@ -76,6 +81,7 @@ public class UpdateActivity extends AppCompatActivity {
 
 
     }
+
 
 
     private void saveData()
