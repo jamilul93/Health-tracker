@@ -39,7 +39,7 @@ public class Details_Activity extends AppCompatActivity {
         timeT = findViewById(R.id.DtimeValue);
         systolicT = findViewById(R.id.DsystolicValue);
         diastolicT = findViewById(R.id.DdiastolicValue);
-        heartRateT = findViewById(R.id.DheartRate);
+        heartRateT = findViewById(R.id.DheartRateValue);
         commentT = findViewById(R.id.DcommentValue);
         Button updateButton = findViewById( R.id.UpdateButtonId);
         retrieveData();
